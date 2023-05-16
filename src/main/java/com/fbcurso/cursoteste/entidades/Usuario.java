@@ -2,8 +2,19 @@ package com.fbcurso.cursoteste.entidades;
 
 import java.io.Serializable;
 
-public class Usuario implements Serializable {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name="tb_user")
+public class Usuario implements Serializable {
+    private static final long serialVersionUID=1L; 
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nome;
     private String email;
