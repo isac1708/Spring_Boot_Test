@@ -31,8 +31,9 @@ public class Pedido implements Serializable {
     private int statusPedido;
 
 
-    @ManyToOne
-    @JoinColumn(name="cliente_id")
+    @ManyToOne /*Essa anotação é usada para definir uma relação de muitos-para-um entre duas entidades. Ela indica que várias instâncias da entidade atual podem estar associadas a uma única instância da entidade referenciada. */
+    @JoinColumn(name="cliente_id") /* Essa anotação é usada para especificar a coluna de chave estrangeira na tabela do banco de dados que representa a relação.
+     Nesse caso, ela indica que a coluna "cliente_id" na tabela será usada como chave estrangeira para estabelecer a associação entre a entidade atual e a entidade "Usuario". */
     private Usuario cliente;
 
 

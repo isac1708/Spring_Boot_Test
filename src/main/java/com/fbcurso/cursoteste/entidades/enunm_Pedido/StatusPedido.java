@@ -1,6 +1,6 @@
 package com.fbcurso.cursoteste.entidades.enunm_Pedido;
 
-import org.aspectj.apache.bcel.classfile.Code;
+
 
 public enum StatusPedido {
     AGUARDANDO_PAGAMENTO(1),   //WATTING_PAYMENT
@@ -10,6 +10,7 @@ public enum StatusPedido {
     CANCELADO(5);              //CANCELED
 
     private int code;
+
     private StatusPedido(int code){
         this.code=code;
     }

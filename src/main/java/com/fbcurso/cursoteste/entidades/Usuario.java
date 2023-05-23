@@ -20,7 +20,6 @@ public class Usuario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private long id;
     private String nome;
     private String email;
@@ -28,7 +27,7 @@ public class Usuario implements Serializable {
     private String senha;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente") /*um para muitos, apenas  */
     private List<Pedido> pedidos = new ArrayList<>();
     
    
