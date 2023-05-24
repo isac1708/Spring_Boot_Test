@@ -10,9 +10,11 @@ import org.springframework.context.annotation.Profile;
 
 import com.fbcurso.cursoteste.entidades.Categoria;
 import com.fbcurso.cursoteste.entidades.Pedido;
+import com.fbcurso.cursoteste.entidades.Produto;
 import com.fbcurso.cursoteste.entidades.Usuario;
 import com.fbcurso.cursoteste.entidades.enunm_Pedido.StatusPedido;
 import com.fbcurso.cursoteste.repositorios.RepositorioPedidos;
+import com.fbcurso.cursoteste.repositorios.RepositorioProdutos;
 import com.fbcurso.cursoteste.repositorios.RepositorioUsuario;
 import com.fbcurso.cursoteste.repositorios.RepositorioCategoria;
 
@@ -30,7 +32,8 @@ public class TesteConfig implements CommandLineRunner{
     @Autowired
     private RepositorioCategoria repositorioCategoria;
 
-   
+   @Autowired
+   private RepositorioProdutos repositorioProdutos;
 
     @Override
     public void run(String... args) throws Exception {
@@ -45,9 +48,15 @@ public class TesteConfig implements CommandLineRunner{
         Categoria cat2 = new Categoria(2L, "Books");
         Categoria cat3 = new Categoria(3L, "Computers");
 
+        Produto p1 = new Produto(1L, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
+        Produto p2 = new Produto(2L, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
+        Produto p3 = new Produto(3L, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
+        Produto p4 = new Produto(4L, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
+        Produto p5 = new Produto(5L, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
+
         repositorioUsuario.saveAll(Arrays.asList(u1,u2));
         repositorioPedidos.saveAll(Arrays.asList(o1,o2,o3));
         repositorioCategoria.saveAll(Arrays.asList(cat1,cat2,cat3));
-
+        repositorioProdutos.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
     }
 }
