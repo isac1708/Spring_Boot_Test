@@ -4,13 +4,17 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 
 @Entity
 @Table(name="tb_produto")
@@ -29,8 +33,11 @@ public class Produto implements Serializable {
     private double price;
     private String imgUrl;
     
-    @Transient
-    private Set<Categoria> categorias= new  HashSet<>();
+   @ManyToMany @Fetch(FetchMode.JOIN)
+   @JoinTable(name="tb_product_category",                    /* @JoinTable utilizada para especificar a tabela intermediária que sera criada no banco para representar essa relação muitos para muitos*/
+   joinColumns=@JoinColumn(name = "product_id"),             /* especificar a coluna na tabela intermediária que faz refÊrencia a entidade "Produto" na relação muitos para muitos   */
+   inverseJoinColumns = @JoinColumn(name="category_id"))     /* a coluna "category_id" na tabela intermediária será utilizada para armazenar as chaves estrangeiras das categorias dos produtos e faz a ligação entre produtos e categorias na relação muitos para muitos  */
+   private Set<Categoria> categorias= new  HashSet<>();      /* no conjunto Set do objeto Categoria essa variavel representa a associação entre os produtos e as categorias e será mapeada pela tabela intermediaria */
     
     public Produto(long id, String nome, String descricao, double price, String imgUrl) {
         this.id = id;
